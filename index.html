@@ -7,13 +7,13 @@
 <meta property="og:title" content="YG's Laboratory">
 <meta property="og:description" content="Vibecoded games, worlds and weird little sites. @YGMackillaVR / @YGFabrications">
 <meta name="theme-color" content="#040912">
-<link rel="icon" type="image/png" href="https://ygfabrications.lovable.app/assets/yg-logo-Bqt-VwuJ.png">
-<link rel="apple-touch-icon" href="https://ygfabrications.lovable.app/assets/yg-logo-Bqt-VwuJ.png">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ygmackilla.github.io/">
-<meta property="og:image" content="https://ygfabrications.lovable.app/assets/yg-logo-Bqt-VwuJ.png">
+<meta property="og:image" content="https://ygmackilla.github.io/img/preview.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ygfabrications.lovable.app/assets/yg-logo-Bqt-VwuJ.png">
+<meta name="twitter:image" content="https://ygmackilla.github.io/img/preview.jpg">
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -118,6 +118,7 @@ a.card:focus-visible, .link:focus-visible { outline: 3px solid var(--cyan); outl
 
 .links { display: flex; flex-wrap: wrap; gap: 14px; }
 .link { display: inline-flex; align-items: baseline; gap: 10px; text-decoration: none; font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; letter-spacing: .04em; color: #03121a; padding: 11px 20px; border-radius: 14px; background: linear-gradient(180deg, #f4fbff 0%, var(--accent) 38%, color-mix(in srgb, var(--accent) 55%, #03121a) 100%); box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 55%, transparent), inset 0 1px 0 rgba(255,255,255,.85); transition: transform .15s ease, box-shadow .15s ease; }
+.link .av { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; align-self: center; box-shadow: 0 0 0 2px rgba(3,18,26,.55); }
 .link small { font-family: var(--font-mono); font-size: .8rem; text-transform: none; letter-spacing: 0; opacity: .8; }
 .link:hover { transform: translateY(-3px); box-shadow: 0 0 34px var(--accent), inset 0 1px 0 rgba(255,255,255,.85); }
 
@@ -210,9 +211,9 @@ var PROJECTS = [
     url: "", cta: "Search it in VRChat", icon: "bolt" }
 ];
 var LINKS = [
-  { label: "Instagram", sub: "@YGFabrications", url: "https://instagram.com/ygfabrications", color: "green" },
+  { logo: "img/ygfab-logo.webp", label: "Instagram", sub: "@YGFabrications", url: "https://instagram.com/ygfabrications", color: "green" },
   { label: "Instagram", sub: "@YGMackillaVR", url: "https://instagram.com/ygmackillavr", color: "cyan" },
-  { label: "Instagram", sub: "@ElectricCrewLGBTQ", url: "https://instagram.com/electriccrewlgbtq", color: "lime" },
+  { logo: "img/ec-logo.webp", label: "Instagram", sub: "@ElectricCrewLGBTQ", url: "https://instagram.com/electriccrewlgbtq", color: "lime" },
   { label: "Fashion", sub: "YG Fabrications", url: "https://ygfabrications.lovable.app/", color: "lime" },
   { label: "VRChat", sub: "Hexcat Hollow", url: "https://vrchat.com/home/world/wrld_937a15b3-6b8e-4128-ae43-d50c1ad9bd01", color: "green" },
   { label: "VRChat", sub: "Celestial Lounge", url: "https://vrchat.com/home/world/wrld_fb64a2f5-606a-49a4-87be-a871bd231cd2", color: "blue" },
@@ -240,7 +241,7 @@ document.getElementById("projects").innerHTML = PROJECTS.map(function(p){
     : '<div class="card soon' + extra + '"' + style + '>' + inner + '</div>';
 }).join("");
 document.getElementById("links").innerHTML = LINKS.map(function(l){
-  return '<a class="link" style="--accent: var(--' + l.color + ')" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + ' <small>' + esc(l.sub) + '</small></a>';
+  return '<a class="link" style="--accent: var(--' + l.color + ')" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + (l.logo ? '<img class="av" src="' + esc(l.logo) + '" alt="" width="28" height="28">' : '') + esc(l.label) + ' <small>' + esc(l.sub) + '</small></a>';
 }).join("");
 /* title glitch burst every few seconds */
 (function(){
