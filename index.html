@@ -124,6 +124,13 @@ a.card:focus-visible, .link:focus-visible { outline: 3px solid var(--cyan); outl
 .link small { font-family: var(--font-mono); font-size: .8rem; text-transform: none; letter-spacing: 0; opacity: .8; }
 .link:hover { transform: translateY(-3px); box-shadow: 0 0 34px var(--accent), inset 0 1px 0 rgba(255,255,255,.85); }
 
+
+.support { display: flex; flex-wrap: wrap; gap: 22px; align-items: center; padding: 22px; border-radius: 22px; background: linear-gradient(160deg, rgba(57,255,20,.10), rgba(0,229,255,.08)); box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 0 30px rgba(57,255,20,.18); }
+.support img { width: 150px; height: 150px; border-radius: 14px; background: #fff; padding: 8px; box-shadow: 0 0 22px rgba(57,255,20,.45); }
+.support .txt { flex: 1 1 220px; display: grid; gap: 12px; }
+.support p { margin: 0; color: var(--soft); }
+.support .link { justify-self: start; }
+
 footer { text-align: center; font-family: var(--font-mono); font-size: .85rem; color: var(--soft); }
 footer b { color: var(--green); font-weight: 400; }
 
@@ -181,6 +188,16 @@ footer b { color: var(--green); font-weight: 400; }
     <section aria-labelledby="find">
       <h2 id="find">Find me</h2>
       <div class="links" id="links"></div>
+    </section>
+    <section aria-labelledby="sup">
+      <h2 id="sup">Support the lab</h2>
+      <div class="support">
+        <img src="img/support-qr.webp" alt="PayPal QR code to send support" width="150" height="150" loading="lazy">
+        <div class="txt">
+          <p>The Malware Visualizer stays free for everyone. If it made your stream better, a $10 tip keeps the slime flowing. Totally optional, always appreciated.</p>
+          <a class="link" style="--accent: var(--green)" href="https://www.paypal.com/qrcodes/p2pqrc/F37S42CRAV9FA" target="_blank" rel="noopener">Support $10 <small>via PayPal</small></a>
+        </div>
+      </div>
     </section>
   </main>
 
