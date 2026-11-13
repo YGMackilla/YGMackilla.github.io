@@ -206,6 +206,7 @@ footer b { color: var(--green); font-weight: 400; }
 
 <script>
 /* Edit this list to change the page. Leave url empty for a "link coming soon" card. */
+var STORE_URL = ""; /* paste your storefront link here */
 var PROJECTS = [
   { images: ["img/hexcat-1.webp", "img/hexcat-2.webp"], alt: "Hexcat Hollow", name: "Hexcat Hollow", color: "green", status: "Playable",
     blurb: "A Halloween kitty-wizard arena battler in 3D, with bots and multiplayer. Runs right in your browser.",
@@ -228,11 +229,15 @@ var PROJECTS = [
   { images: ["img/fab-neon.webp"], single: "black", alt: "YG Fabrications", name: "YG Fabrications", color: "green", status: "Fashion",
     blurb: "My fashion work for Meta Horizon Worlds. Take a look at what I've made.",
     url: "https://ygfabrications.lovable.app/", cta: "See the work", icon: "spark" },
+  { images: ["img/store-collections.webp"], single: "black", alt: "YGmackilla storefront collections", name: "Shop My Picks", color: "cyan", status: "Storefront",
+    blurb: "Smart glasses, Quest gear and games I actually use. Four collections: Refurbished & Budget Finds, Trending Smart Glasses, Future Tech & Creator Gear, and Y2K Pop-Era Moments. I may earn a commission if you buy through these links.",
+    url: STORE_URL, cta: "Shop my picks", icon: "spark" },
   { images: ["img/rw-1.webp", "img/rw-2.webp"], alt: "YG-Robotics Warehouse", name: "YG-ROBOTICS WAREHOUSE // MACKILLA", color: "lime", status: "VRChat world",
     blurb: "A luxury robotics factory turned rave venue. Six glowing robot statues, audio-reactive cables and a liquid-chrome sculpture. PC and Quest.",
     url: "", cta: "Search it in VRChat", icon: "bolt" }
 ];
 var LINKS = [
+  { label: "Shop", sub: "My Picks", url: STORE_URL, color: "cyan" },
   { label: "Scout House", sub: "Games Hub", url: "https://many-walkthroughs-680001.framer.app/", color: "lime" },
   { logo: "img/ygfab-logo.webp", label: "Instagram", sub: "@YGFabrications", url: "https://instagram.com/ygfabrications", color: "green" },
   { label: "Instagram", sub: "@YGMackillaVR", url: "https://instagram.com/ygmackillavr", color: "cyan" },
@@ -264,7 +269,7 @@ document.getElementById("projects").innerHTML = PROJECTS.map(function(p){
     ? '<a class="card' + extra + '"' + style + ' href="' + esc(p.url) + '" target="_blank" rel="noopener">' + inner + '</a>'
     : '<div class="card soon' + extra + '"' + style + '>' + inner + '</div>';
 }).join("");
-document.getElementById("links").innerHTML = LINKS.map(function(l){
+document.getElementById("links").innerHTML = LINKS.filter(function(l){ return l.url; }).map(function(l){
   return '<a class="link" style="--accent: var(--' + l.color + ')" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + (l.logo ? '<img class="av" src="' + esc(l.logo) + '" alt="" width="28" height="28">' : '') + esc(l.label) + ' <small>' + esc(l.sub) + '</small></a>';
 }).join("");
 /* title glitch burst every few seconds */
