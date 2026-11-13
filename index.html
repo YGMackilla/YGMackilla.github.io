@@ -156,6 +156,20 @@ header .flask { margin-top: 0; }
 .creator-chip { font-family: var(--font-display); font-size: 1rem; letter-spacing: .05em; text-transform: uppercase; color: var(--y2k-ink); padding: 10px 24px; border-radius: 999px; background: linear-gradient(180deg, #ffffff 0%, #ffd1f0 28%, #d0b3ff 62%, #8be6ff 100%); border: 2px solid #fff; box-shadow: 0 0 0 3px rgba(176,35,154,.3), 0 4px 0 rgba(91,42,168,.4), 0 0 24px rgba(255,127,209,.7), inset 0 2px 0 rgba(255,255,255,.95); }
 @media (prefers-reduced-motion: reduce) { .topbar, .cta { animation: none; } .cta:hover { transform: none; } }
 
+/* new items: Sparkle Wings scroller */
+.new-items { margin-top: 8px; }
+.new-badge { display: inline-block; margin-left: 4px; font-family: var(--font-mono); font-size: .8rem; letter-spacing: .1em; color: #03121a; background: var(--lime); padding: 3px 12px; border-radius: 999px; box-shadow: 0 0 16px var(--lime); animation: blink 1.6s steps(2, end) infinite; }
+@keyframes blink { 50% { box-shadow: 0 0 4px var(--lime); opacity: .85; } }
+.new-sub { margin: -8px 0 16px; color: var(--soft); max-width: 60ch; }
+.scroller { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 6px 4px 18px; margin-inline: -4px; scrollbar-color: var(--green) transparent; }
+.scroller a { flex: 0 0 min(72%, 280px); scroll-snap-align: start; display: block; padding: 3px; border-radius: 20px; background: var(--chrome); box-shadow: 0 10px 28px rgba(0,0,0,.55), 0 0 24px rgba(57,255,136,.3); transition: transform .15s ease; }
+.scroller a:hover, .scroller a:focus-visible { transform: translateY(-4px); }
+.scroller a:focus-visible { outline: 3px solid var(--cyan); outline-offset: 4px; }
+.scroller img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 17px; background: #060d1a; }
+.new-cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.new-cta > small { font-family: var(--font-mono); color: var(--soft); }
+@media (prefers-reduced-motion: reduce) { .new-badge { animation: none; } .scroller a { transition: none; } }
+
 footer { text-align: center; font-family: var(--font-mono); font-size: .85rem; color: var(--soft); }
 footer b { color: var(--green); font-weight: 400; }
 
@@ -192,6 +206,26 @@ footer b { color: var(--green); font-weight: 400; }
         <a class="cta" id="cta" href="https://creatoraffiliate.atmeta.com/mypage/YGMackillaVRs-Picks" target="_blank" rel="noopener sponsored"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h13l-1.500 8H8z"/><path d="M6 7 5 3H2"/><circle cx="9" cy="20" r="1.200"/><circle cx="17" cy="20" r="1.200"/></svg>Shop my picks</a>
         <div class="disclose">I may earn a commission if you buy through these links.</div>
       </div>
+    </div>
+  </section>
+
+  <section class="new-items" aria-labelledby="new">
+    <h2 id="new">New items! <span class="new-badge">NEW</span></h2>
+    <p class="new-sub">YG Sparkle Wings: five glowing, music-reactive wing sets for VRChat avatars, PC + Quest. Swipe through, tap any slide to get the bundle.</p>
+    <div class="scroller" tabindex="0" aria-label="YG Sparkle Wings preview slides">
+      <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-1.webp" alt="YG Sparkle Wings: 5 glowing wing sets for VRChat avatars" width="720" height="900"></a>
+      <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-2.webp" alt="Rave Cyberpunk wings" width="720" height="900" loading="lazy"></a>
+      <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-3.webp" alt="Pixie Elf wings" width="720" height="900" loading="lazy"></a>
+      <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-4.webp" alt="Neon Butterfly wings" width="720" height="900" loading="lazy"></a>
+      <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-5.webp" alt="Demon Edgy wings" width="720" height="900" loading="lazy"></a>
+      <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-6.webp" alt="Green Leaf wings" width="720" height="900" loading="lazy"></a>
+      <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-7.webp" alt="Two color wheels: wing color and glow color" width="720" height="900" loading="lazy"></a>
+      <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-8.webp" alt="Motion modes: rest, flutter, fly and glide" width="720" height="900" loading="lazy"></a>
+      <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-9.webp" alt="Touch the wings and they sparkle back" width="720" height="900" loading="lazy"></a>
+    </div>
+    <div class="new-cta">
+      <a class="link" style="--accent: var(--green)" href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener">Get the bundle <small>$45 on Jinxxy</small></a>
+      <small>All 5 sets &middot; PC + Quest &middot; VRCFury drag and drop</small>
     </div>
   </section>
 
