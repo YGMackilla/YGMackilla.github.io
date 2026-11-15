@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#07060f" />
+    <title>Rhythm Catcher — a hand-tracked lullaby</title>
+    <meta
+      name="description"
+      content="Rhythm Catcher is a seated WebXR lullaby you play with your bare hands: pinch fireflies out of the dusk, and the Lullabook sings back exactly the notes you caught."
+    />
+    <link rel="icon" type="image/png" href="./assets/favicon-BEsb2nY_.png" />
+    <link rel="apple-touch-icon" href="./assets/favicon-BEsb2nY_.png" />
+    <link rel="preload" href="./fonts/Fraunces-VF.latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/Nunito-VF.subset.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Critical first paint: Vite normally delivers main.css through the module, which may stall. -->
+    <style>html,body{color:#fff3da;background:#092733;height:100%;margin:0}[hidden]{display:none!important}#boot{z-index:30;text-align:center;background:linear-gradient(#0c2e3a,#263d49);place-content:center;gap:1rem;font-family:system-ui,sans-serif;display:grid;position:fixed;inset:0}#boot h2{color:#fff3da;margin:0}#boot .boot-mote{background:radial-gradient(circle,#f0e9d5 0%,#f48562 42%,#0000 72%);border-radius:50%;width:64px;height:64px;margin:0 auto}#boot .boot-text{color:#fff3da;letter-spacing:.08em;text-transform:uppercase;margin:0;font-size:.78rem}</style>
+    <script type="module" crossorigin src="./assets/index-CoUMoqlf.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C993_D6D.css">
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <div id="boot" role="status" aria-live="polite">
+      <p class="boot-mote" aria-hidden="true"></p>
+      <h2>Rhythm Catcher</h2>
+      <p class="boot-text">Lighting the lanterns…</p>
+    </div>
+
+    <section id="fatal" class="fatal" role="alert" hidden>
+      <div class="fatal-card">
+        <p class="eyebrow">The garden couldn't open</p>
+        <h1>Graphics could not start</h1>
+        <p id="fatal-detail">Your browser could not start WebGL. Try reloading, or check that graphics acceleration is enabled.</p>
+        <button id="fatal-retry" class="primary" type="button">Retry</button>
+      </div>
+    </section>
+
+    <main id="overlay">
+      <p class="toast" id="toast" role="status" aria-live="polite" data-show="false"></p>
+      <section id="entry" class="card menu" hidden>
+        <header class="menu-head">
+          <h1>Rhythm Catcher</h1>
+          <p class="lede">Catch little lights. Keep their songs.</p>
+          <!-- The Garden Wakes: who the songs have woken so far, and where the keeper is wanted next. -->
+          <div class="story">
+            <span class="companions" id="companions" aria-hidden="true"></span>
+            <p class="story-line" id="story"></p>
+          </div>
+        </header>
+
+        <!-- Why come back tonight, in one row: today's song, the streak, or a friend's challenge. -->
+        <div class="daily" id="daily" hidden>
+          <span class="daily-tag" id="daily-tag">Today</span>
+          <span class="daily-song" id="daily-song"></span>
+          <span class="daily-detail" id="daily-detail"></span>
+          <span class="daily-streak" id="daily-streak"></span>
+        </div>
+
+        <div class="levels-head">
+          <span>Choose a song</span>
+          <span id="level-hint"></span>
+        </div>
+        <div class="levels" id="levels"></div>
+
+        <section class="vibes" aria-labelledby="vibe-heading">
+          <div class="vibes-head">
+            <span id="vibe-heading">Choose a place</span>
+            <span>A new place opens every four finished songs.</span>
+          </div>
+          <div class="vibe-list" id="vibes"></div>
+        </section>
+
+        <p class="status" id="xr-status" data-state="busy">Checking your headset…</p>
+
+        <div class="actions">
+          <button id="enter-vr" class="primary" type="button" disabled>Enter VR</button>
+          <button id="enter-ar" class="secondary" type="button" hidden>Mixed reality</button>
+          <button id="enter-desktop" class="ghost" type="button">Play in 2D</button>
+        </div>
+
+        <p class="error" id="overlay-error" hidden></p>
+
+        <div class="menu-foot">
+          <details class="howto">
+            <summary>How to play</summary>
+            <ol class="how">
+              <li><strong>Pinch</strong> thumb and finger together to catch a firefly and its note.</li>
+              <li><strong>Wide gold ring?</strong> Pinch and keep holding until the ring closes.</li>
+              <li><strong>Tethered pairs</strong> hold a note each and need one hand apiece.</li>
+              <li><strong>In a headset,</strong> turn a palm toward you for Pause and Settings, and tap them with your other hand.</li>
+              <li><strong>Miss one</strong> and its note stays silent when the book sings.</li>
+            </ol>
+            <p class="note" id="entry-note">
+              No install: open this page in your headset's browser and press Enter VR — the game plays with your
+              bare hands. Reviewing on a screen? Play in 2D: the mouse moves your hand, hold the left button to
+              pinch, and the arrow keys look around.
+              On a phone, one finger moves your hand and pinches with it, and two fingers turn your view.
+            </p>
+          </details>
+          <div class="shop-invite">
+            <div><strong>The Firefly Nook</strong><span>Dress the lights you catch.</span></div>
+            <button id="shop-open" class="secondary" type="button">Visit the Nook</button>
+          </div>
+          <!-- Attribution the licences ask for, where anyone can find it without a headset on. -->
+          <details class="howto credits">
+            <summary>Credits</summary>
+            <ul class="credit-list">
+              <li><strong>Songs.</strong> Eighteen public-domain melodies, in new arrangements made for this game.</li>
+              <li><strong>Instrument sounds.</strong> Notes from the FluidR3 GM SoundFont by Frank Wen, used under the
+                <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution 3.0</a>
+                licence, taken as single notes from the MIDI.js Soundfonts project and shortened and re-encoded for this game.</li>
+              <li><strong>Type.</strong> Fraunces and Nunito, under the SIL Open Font License 1.1.</li>
+              <li><strong>Engine.</strong> three.js, under the MIT licence.</li>
+            </ul>
+            <p class="note"><a href="./THIRD-PARTY-NOTICES.txt" target="_blank" rel="noopener noreferrer">Full notices and licence texts</a></p>
+          </details>
+        </div>
+      </section>
+
+      <section id="shop" class="card shop-card" role="dialog" aria-modal="true" aria-labelledby="shop-heading" hidden>
+        <div class="shop-head">
+          <div><p class="eyebrow">Little lights, new coats</p><h2 id="shop-heading">The Firefly Nook</h2></div>
+          <button id="shop-close" class="ghost" type="button">Back to songs</button>
+        </div>
+        <p class="shop-explainer">Catch a firefly before it fades to earn <strong>5 Firefly Points</strong>. Buy a style once, then tap it again to wear it. Your garden and title lights change together.</p>
+        <p class="shop-wallet">Your Firefly Points <strong id="shop-points">0</strong></p>
+        <div id="shop-grid" class="shop-grid"></div>
+        <p id="shop-message" class="shop-message" role="status" aria-live="polite">The original trio is already yours.</p>
+      </section>
+
+      <section id="pause" class="card small" hidden>
+        <p class="eyebrow">Paused</p>
+        <h2>The fireflies will wait</h2>
+        <p id="pause-reason" class="pause-reason" hidden></p>
+        <div class="actions">
+          <button id="resume" class="primary" type="button">Resume</button>
+          <button id="quit" class="ghost" type="button">Back to the garden</button>
+        </div>
+      </section>
+
+      <!-- This lives beside the entry card rather than inside it: changing a comfort choice must
+           never look like choosing to play, and the same thumb-sized door remains after entry. -->
+      <section id="settings-dock" aria-label="Settings">
+        <div id="firefly-points" class="points-counter" role="status" aria-live="polite">
+          <strong>Firefly Points <span id="points-balance">0</span></strong>
+          <small>+5 per on-time catch</small>
+        </div>
+        <button id="settings-toggle" class="settings-toggle" type="button" aria-expanded="false" aria-controls="settings-panel">
+          Settings
+        </button>
+        <section id="settings-panel" class="settings-panel" aria-labelledby="settings-heading" hidden>
+          <div class="settings-panel-head">
+            <div>
+              <p class="eyebrow">Take your time</p>
+              <h2 id="settings-heading">Settings</h2>
+            </div>
+            <button id="settings-close" class="settings-close" type="button" aria-label="Close settings">Close</button>
+          </div>
+          <p class="settings-intro">These choices change the way the garden meets you. None of them starts a song.</p>
+
+          <div class="setting-list">
+            <label class="setting-row">
+              <span class="setting-copy">
+                <span class="setting-name">Quality</span>
+                <span class="setting-description">Lower quality draws less and may run smoother.</span>
+              </span>
+              <select id="quality" aria-label="Quality">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </label>
+
+            <div class="setting-row">
+              <span class="setting-copy">
+                <span class="setting-name">Sound</span>
+                <span class="setting-description">Turn the garden and song sounds on or off.</span>
+              </span>
+              <button id="mute" class="setting-value" type="button" data-muted="false">Sound on</button>
+            </div>
+
+            <div class="setting-row">
+              <span class="setting-copy">
+                <span class="setting-name">Note names</span>
+                <span class="setting-description">The note name floats over each firefly.</span>
+              </span>
+              <button id="note-names" class="setting-value" type="button" data-on="true">Note names on</button>
+            </div>
+
+            <div class="setting-row">
+              <span class="setting-copy">
+                <span class="setting-name">Timing assist</span>
+                <span class="setting-description">A wider window for Perfect and Good, so slower hands still finish the song.</span>
+              </span>
+              <button id="timing-assist" class="setting-value" type="button" data-on="false" aria-pressed="false">Timing assist off</button>
+            </div>
+            <div class="setting-row">
+              <span class="setting-copy">
+                <span class="setting-name">Reduced motion</span>
+                <span class="setting-description">Drifting petals, snow, weather and camera movement stop.</span>
+              </span>
+              <button id="reduced-motion" class="setting-value" type="button" data-on="false" aria-pressed="false">Reduced motion off</button>
+            </div>
+
+            <div class="setting-row">
+              <span class="setting-copy">
+                <span class="setting-name">High contrast</span>
+                <span class="setting-description">Colours and outlines grow stronger.</span>
+              </span>
+              <button id="high-contrast" class="setting-value" type="button" data-on="false" aria-pressed="false">High contrast off</button>
+            </div>
+
+            <div class="setting-row">
+              <span class="setting-copy">
+                <span class="setting-name">Larger text</span>
+                <span class="setting-description">Cards and labels grow larger, so less fits at once.</span>
+              </span>
+              <button id="larger-text" class="setting-value" type="button" data-on="false" aria-pressed="false">Larger text off</button>
+            </div>
+
+            <label class="setting-row">
+              <span class="setting-copy">
+                <span class="setting-name">Handed reach</span>
+                <span class="setting-description" id="handedness-note">The interface comes to your right hand; the catching space stays centred.</span>
+              </span>
+              <select id="handedness" aria-label="Handed reach" aria-describedby="handedness-note">
+                <option value="mirror">Mirror deck</option>
+                <option value="left">Left hand</option>
+                <option value="right">Right hand</option>
+              </select>
+            </label>
+
+            <div class="setting-row">
+              <span class="setting-copy">
+                <span class="setting-name">One-hand pairs</span>
+                <span class="setting-description">Pinch, open, then pinch its partner for tethered pairs.</span>
+              </span>
+              <button id="one-handed" class="setting-value" type="button" data-on="false" aria-pressed="false">One-hand pairs off</button>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <!-- On touch phones this is an actual reserved band: the 3D canvas stops above it. -->
+    <aside id="mobile-controls" class="mobile-controls" aria-label="Game controls">
+      <button id="mobile-pause" type="button" hidden>Pause</button>
+      <p id="tracking-status" class="tracking-status" role="status" aria-live="polite" hidden></p>
+    </aside>
+
+    <div id="resume-countdown" class="resume-countdown" role="status" aria-live="assertive" hidden>
+      <span id="countdown-number">3</span>
+      <p>Back to the fireflies</p>
+    </div>
+
+    <!-- The arrival lives in permanent DOM: a phone turn only changes state, so it cannot create
+         artwork or listeners in the middle of the first usable frame. The cutout is the one supplied asset. -->
+    <section id="title-screen" class="title-screen" role="dialog" aria-modal="true" aria-labelledby="title-screen-heading" hidden>
+      <div class="title-screen-glow" aria-hidden="true"></div>
+      <div class="title-wisps" aria-hidden="true">
+        <!-- The same three locally bundled creatures appear in the title and in play. -->
+        <span class="title-wisp title-wisp-a"></span>
+        <span class="title-wisp title-wisp-b"></span>
+        <span class="title-wisp title-wisp-c"></span>
+        <span class="title-wisp title-wisp-d"></span>
+        <span class="title-wisp title-wisp-e"></span>
+        <span class="title-wisp title-wisp-f"></span>
+      </div>
+      <div class="title-screen-card">
+        <div class="title-cutout-frame">
+          <img class="title-cutout" src="./assets/title-cutout.png" alt="A tiny Lullabook and fireflies in a twilight garden" />
+        </div>
+        <div class="title-screen-copy">
+          <p class="eyebrow">A small garden lullaby</p>
+          <div class="title-plaque">
+            <span class="title-plaque-star" aria-hidden="true">★</span>
+            <span class="title-plaque-star" aria-hidden="true">★</span>
+            <span class="title-plaque-star" aria-hidden="true">★</span>
+            <span class="title-plaque-star" aria-hidden="true">★</span>
+            <h1 id="title-screen-heading">Rhythm Catcher</h1>
+          </div>
+          <p>Catch little lights. Keep their songs.</p>
+          <button id="title-continue" class="title-continue" type="button">Enter the garden</button>
+          <span class="title-tap-hint">Tap anywhere to continue</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- No rotate glyph: the landscape state only pauses until the phone is upright again. -->
+    <section id="orientation-gate" class="orientation-gate" role="status" aria-live="polite" aria-labelledby="orientation-copy" hidden>
+      <div class="orientation-gate-turn">
+        <p class="eyebrow">The fireflies will wait</p>
+        <p id="orientation-copy" class="orientation-gate-copy">Rotate your phone upright to continue.</p>
+      </div>
+    </section>
+
+  </body>
+</html>

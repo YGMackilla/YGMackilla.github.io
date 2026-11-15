@@ -1,0 +1,88 @@
+RHYTHM CATCHER
+Credits and third-party notices
+
+Rhythm Catcher was conceived and built between 1 October and November 2026. Its design, code, music
+arrangements, text and artwork were made for this game. The parts listed below came from other
+people's work and are used under the licences shown.
+
+
+MUSIC
+
+The eighteen songs are public-domain melodies: traditional tunes long in print, and pieces by
+composers who died more than a century ago. The arrangements and the backing band were made for
+this game. No recording by anyone else is used.
+
+   1  Korobeiniki             Russian folk song; words from a poem of 1861
+   2  Twinkle, Twinkle        French melody "Ah! vous dirai-je, maman", published 1761
+   3  Fur Elise               Ludwig van Beethoven, 1810
+   4  Happy Birthday          Melody "Good Morning to All", Mildred and Patty Hill, published 1893
+   5  Can-Can                 Jacques Offenbach, "Orpheus in the Underworld", 1858
+   6  Ode to Joy              Ludwig van Beethoven, Symphony No. 9, 1824
+   7  Turkish March           W. A. Mozart, Piano Sonata No. 11, published 1784
+   8  Frere Jacques           French nursery tune, eighteenth century
+   9  Jingle Bells            James Lord Pierpont, 1857
+  10  Yankee Doodle           Traditional, eighteenth century
+  11  When the Saints         Traditional American spiritual
+  12  The Entertainer         Scott Joplin, 1902
+  13  Canon in D              Johann Pachelbel, about 1700
+  14  Oh! Susanna             Stephen Foster, 1848
+  15  Mountain King           Edvard Grieg, "In the Hall of the Mountain King", 1875
+  16  Up She Rises            The sea shanty "Drunken Sailor", traditional, in print since the 1840s
+  17  Eine kleine Nachtmusik  W. A. Mozart, 1787
+  18  Korobeiniki, Complete   As 1
+
+
+INSTRUMENT SOUNDS
+
+The melody notes are samples from the FluidR3 GM SoundFont by Frank Wen and contributors, licensed
+under the Creative Commons Attribution 3.0 Unported licence:
+https://creativecommons.org/licenses/by/3.0/
+
+They were taken as individual notes from the MIDI.js Soundfonts project
+(https://github.com/gleitz/midi-js-soundfonts) and changed for this game: reduced to one channel,
+resampled to 22.05 kHz, shortened with a fade, and re-encoded as MP3: 212 notes in all, across the
+game's eighteen instrument voices.
+
+
+TYPEFACES
+
+Fraunces - Copyright 2020 The Fraunces Project Authors (https://github.com/undercasetype/Fraunces)
+Nunito   - Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)
+
+Both are licensed under the SIL Open Font License, Version 1.1, and are shipped here with reduced
+character sets. The full licence texts are beside this file, at fonts/Fraunces-OFL.txt and
+fonts/Nunito-OFL.txt.
+
+
+CODE
+
+three.js - Copyright (c) 2010-2026 three.js authors. MIT licence, below.
+
+WebXR Input Profiles - Copyright (c) 2019 Amazon. MIT licence, below. None of its files are shipped:
+the resting pose of the game's hands (where the 25 tracked joints sit) was measured from its generic
+hand model.
+
+The MIT licence:
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+ARTWORK
+
+All artwork was made for this game during its development.
