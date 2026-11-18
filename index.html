@@ -106,6 +106,15 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 footer { text-align: center; color: var(--soft); font-size: .82rem; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* tilt-reactive holographic foil (pointer or device tilt) */
+.foil { transform-style: preserve-3d; will-change: transform; }
+.foil::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .25s ease; mix-blend-mode: color-dodge;
+  background: conic-gradient(from calc(var(--ang, 0) * 1deg) at calc(var(--mx, 50) * 1%) calc(var(--my, 50) * 1%), #ff7ad9, #ffe27a, #7affc8, #7ab8ff, #c27aff, #ff7ad9); filter: saturate(.9) brightness(.55); }
+.foil.live::after { opacity: .16; }
+.foil.live { transition: transform .08s linear; }
+.avatar.foil { border-radius: 50%; }
+@media (prefers-reduced-motion: reduce) { .foil::after { display: none; } }
 </style>
 </head>
 <body>
@@ -244,6 +253,34 @@ document.getElementById("links").innerHTML = LINKS.filter(function(l){ return l.
   var ic = l.logo ? '<img src="' + esc(l.logo) + '" alt="" width="34" height="34">' : esc(l.label.charAt(0));
   return '<a class="link holo' + (l.primary ? ' primary' : '') + '" href="' + esc(l.url) + '" target="_blank" rel="noopener"><span class="ic">' + ic + '</span><span class="t"><b>' + esc(l.label) + '</b><small>' + esc(l.sub) + '</small></span>' + AR + '</a>';
 }).join("");
+
+/* foil + tilt: cards lean toward the pointer (or phone tilt) and the rainbow sheen follows */
+(function(){
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var els = document.querySelectorAll(".card.holo, .feature.holo, .support.holo, .avatar");
+  els.forEach(function(el){ el.classList.add("foil"); if (getComputedStyle(el).position === "static") el.style.position = "relative"; });
+  function apply(el, x, y){
+    el.style.setProperty("--mx", (x * 100).toFixed(1)); el.style.setProperty("--my", (y * 100).toFixed(1));
+    el.style.setProperty("--ang", Math.round((x + y) * 180));
+    el.style.transform = "perspective(800px) rotateX(" + ((0.5 - y) * 7).toFixed(2) + "deg) rotateY(" + ((x - 0.5) * 9).toFixed(2) + "deg)";
+    el.classList.add("live");
+  }
+  function reset(el){ el.classList.remove("live"); el.style.transform = ""; }
+  els.forEach(function(el){
+    el.addEventListener("pointermove", function(e){ if (e.pointerType === "touch") return; var r = el.getBoundingClientRect(); apply(el, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); });
+    el.addEventListener("pointerleave", function(){ reset(el); });
+  });
+  /* phones: tilt the foil as the phone moves; the sheen on the card nearest the screen centre */
+  function onTilt(e){
+    if (e.gamma == null) return;
+    var x = Math.min(1, Math.max(0, 0.5 + e.gamma / 60)), y = Math.min(1, Math.max(0, 0.5 + (e.beta - 45) / 60));
+    var mid = innerHeight / 2, best = null, bd = 1e9;
+    els.forEach(function(el){ var r = el.getBoundingClientRect(); var d = Math.abs((r.top + r.bottom) / 2 - mid); if (d < bd && r.bottom > 0 && r.top < innerHeight) { bd = d; best = el; } });
+    els.forEach(function(el){ if (el !== best) el.classList.remove("live"); });
+    if (best) { best.style.setProperty("--mx", (x * 100).toFixed(1)); best.style.setProperty("--my", (y * 100).toFixed(1)); best.style.setProperty("--ang", Math.round((x + y) * 180)); best.classList.add("live"); }
+  }
+  if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== "function") addEventListener("deviceorientation", onTilt);
+})();
 </script>
 
 </body></html>
