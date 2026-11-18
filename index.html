@@ -115,6 +115,9 @@ footer { text-align: center; color: var(--soft); font-size: .82rem; }
 .foil.live { transition: transform .08s linear; }
 .avatar.foil { border-radius: 50%; }
 @media (prefers-reduced-motion: reduce) { .foil::after { display: none; } }
+.acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px; }
+.btn.ghost { background: var(--panel); color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
+.acts .btn { padding: 9px 14px; font-size: .85rem; border-radius: 10px; }
 </style>
 </head>
 <body>
@@ -218,7 +221,7 @@ var PROJECTS = [
     url: "rhythm-catcher/", cta: "Play it", icon: "disc" },
   { images: ["img/toyathon.webp"], single: "black", alt: "Toy-A-Thon promo video", name: "Toy-A-Thon Promo", color: "green", status: "Video",
     blurb: "Promo video for the Vybe'n for Kids Toy-A-Thon charity event at the Vybes Community Center VRChat world.",
-    url: "media/toyathon-promo.mp4", cta: "Watch it", icon: "spark" },
+    url: "", links: [{ label: "Watch the video", url: "media/toyathon-promo.mp4" }, { label: "Visit the Toy-A-Thon site", url: "https://vybenforchange.org/toyathon/" }], icon: "spark" },
   { images: ["img/rw-1.webp", "img/rw-2.webp"], alt: "YG-Robotics Warehouse", name: "YG-ROBOTICS WAREHOUSE // MACKILLA", color: "lime", status: "VRChat world",
     blurb: "A luxury robotics factory turned rave venue. Six glowing robot statues, audio-reactive cables and a liquid-chrome sculpture. PC and Quest.",
     url: "", cta: "Search it in VRChat", icon: "bolt" }
@@ -245,6 +248,10 @@ document.getElementById("projects").innerHTML = PROJECTS.map(function(p){
   var shots = p.images ? '<div class="shots' + (p.images.length === 1 ? ' one' : '') + '">' + p.images.map(function(src, i){ return '<img src="' + esc(src) + '" alt="' + esc(p.alt + ' screenshot ' + (i + 1)) + '" loading="lazy" width="800" height="600">'; }).join("") + '</div>' : '';
   var inner = shots + '<div class="body"><h3>' + esc(p.name) + '</h3><p>' + esc(p.blurb) + '</p>' +
     '<div class="meta"><span class="status">' + esc(p.status) + '</span><span class="go">' + esc(p.cta) + (p.url ? ' &rarr;' : '') + '</span></div></div>';
+  if (p.links) {
+    var acts = '<div class="acts">' + p.links.map(function(l, i){ return '<a class="' + (i ? 'btn' : 'btn ghost') + '" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a>'; }).join("") + '</div>';
+    return '<div class="card holo">' + shots + '<div class="body"><h3>' + esc(p.name) + '</h3><p>' + esc(p.blurb) + '</p>' + acts + '</div></div>';
+  }
   return p.url
     ? '<a class="card holo" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + inner + '</a>'
     : '<div class="card holo soon">' + inner + '</div>';
