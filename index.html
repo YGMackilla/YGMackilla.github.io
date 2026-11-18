@@ -88,7 +88,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: #000; }
 .shots.one { grid-template-columns: 1fr; }
 .shots img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: #0b1020; }
-.shots.one img { aspect-ratio: 8 / 3; }
+.shots.one img { aspect-ratio: 16 / 9; }
 .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .body h3 { margin: 0; font: 700 1.1rem/1.25 var(--display); letter-spacing: -.01em; overflow-wrap: anywhere; }
 .body p { margin: 0; color: var(--soft); font-size: .93rem; }
@@ -204,6 +204,12 @@ var PROJECTS = [
   { images: ["img/store-collections.webp"], single: "black", alt: "YGmackilla storefront collections", name: "Shop My Picks", color: "cyan", status: "Storefront",
     blurb: "Smart glasses, Quest gear and games I actually use. Four collections: Refurbished & Budget Finds, Trending Smart Glasses, Future Tech & Creator Gear, and Y2K Pop-Era Moments. I may earn a commission if you buy through these links.",
     url: STORE_URL, cta: "Shop my picks", icon: "spark" },
+  { images: ["img/rhythm.webp"], single: "black", alt: "Rhythm Catcher", name: "Rhythm Catcher", color: "cyan", status: "Playable",
+    blurb: "A hand-tracked lullaby. Catch the rhythm with your own hands in a calm, dreamy rhythm game.",
+    url: "rhythm-catcher/", cta: "Play it", icon: "disc" },
+  { images: ["img/toyathon.webp"], single: "black", alt: "Toy-A-Thon promo video", name: "Toy-A-Thon Promo", color: "green", status: "Video",
+    blurb: "Promo video for the Vybe'n for Kids Toy-A-Thon charity event at the Vybes Community Center VRChat world.",
+    url: "media/toyathon-promo.mp4", cta: "Watch it", icon: "spark" },
   { images: ["img/rw-1.webp", "img/rw-2.webp"], alt: "YG-Robotics Warehouse", name: "YG-ROBOTICS WAREHOUSE // MACKILLA", color: "lime", status: "VRChat world",
     blurb: "A luxury robotics factory turned rave venue. Six glowing robot statues, audio-reactive cables and a liquid-chrome sculpture. PC and Quest.",
     url: "", cta: "Search it in VRChat", icon: "bolt" }
