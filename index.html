@@ -59,6 +59,8 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg
 .scroller { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; -webkit-overflow-scrolling: touch; }
 .scroller a { flex: 0 0 min(62%, 220px); scroll-snap-align: start; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
 .scroller img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.newname { margin: 0 0 12px; font: 700 1.1rem/1.25 var(--display); letter-spacing: -.01em; }
+.newblock + .newblock { margin-top: 36px; }
 .newrow { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-top: 14px; }
 .newrow small { color: var(--soft); }
 .badge { font: 700 .65rem var(--display); letter-spacing: .1em; padding: 3px 8px; border-radius: 999px; background: var(--holo); color: #07101a; margin-left: 8px; }
@@ -175,20 +177,39 @@ footer { text-align: center; color: var(--soft); font-size: .82rem; }
 
     <section aria-labelledby="new">
       <h2 id="new">New <span class="badge">NEW</span></h2>
-      <div class="scroller" tabindex="0" aria-label="YG Sparkle Wings preview slides">
-        <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-1.webp" alt="YG Sparkle Wings: 5 glowing wing sets for VRChat avatars" width="720" height="900"></a>
-        <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-2.webp" alt="Rave Cyberpunk wings" width="720" height="900" loading="lazy"></a>
-        <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-3.webp" alt="Pixie Elf wings" width="720" height="900" loading="lazy"></a>
-        <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-4.webp" alt="Neon Butterfly wings" width="720" height="900" loading="lazy"></a>
-        <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-5.webp" alt="Demon Edgy wings" width="720" height="900" loading="lazy"></a>
-        <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-6.webp" alt="Green Leaf wings" width="720" height="900" loading="lazy"></a>
-        <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-7.webp" alt="Two color wheels: wing color and glow color" width="720" height="900" loading="lazy"></a>
-        <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-8.webp" alt="Motion modes: rest, flutter, fly and glide" width="720" height="900" loading="lazy"></a>
-        <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-9.webp" alt="Touch the wings and they sparkle back" width="720" height="900" loading="lazy"></a>
+      <div class="newblock">
+        <h3 class="newname">YG Strawberry Boba Launcher</h3>
+        <div class="scroller" tabindex="0" aria-label="YG Strawberry Boba Launcher preview slides">
+          <a href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener"><img src="img/boba-1.webp" alt="YG Strawberry Boba Launcher: a cute hand-held boba for VRChat avatars, $8" width="720" height="900"></a>
+          <a href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener"><img src="img/boba-2.webp" alt="Shake it: the pearls slosh around inside the cup" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener"><img src="img/boba-3.webp" alt="Three color wheels: drink, pearls and straw, with the launcher matching" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener"><img src="img/boba-4.webp" alt="Secret toggle: the cup turns into a kawaii boba launcher" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener"><img src="img/boba-5.webp" alt="Make a fist and rainbow pearls fly where you look" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener"><img src="img/boba-6.webp" alt="The boba and the launcher held on a Mayu avatar in VRChat" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener"><img src="img/boba-7.webp" alt="Easy install with VRCFury: import, add to avatar, upload" width="720" height="900" loading="lazy"></a>
+        </div>
+        <div class="newrow">
+          <a class="btn" href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener">Get the Strawberry Boba: $8</a>
+          <small>shake-reactive pearls &middot; 3 color wheels &middot; secret launcher mode &middot; VRCFury &middot; PC</small>
+        </div>
       </div>
-      <div class="newrow">
-        <a class="btn" href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener">Get YG Sparkle Wings: $45</a>
-        <small>5 music-reactive wing sets &middot; PC + Quest &middot; VRCFury drag and drop</small>
+      <div class="newblock">
+        <h3 class="newname">YG Sparkle Wings</h3>
+        <div class="scroller" tabindex="0" aria-label="YG Sparkle Wings preview slides">
+          <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-1.webp" alt="YG Sparkle Wings: 5 glowing wing sets for VRChat avatars" width="720" height="900"></a>
+          <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-2.webp" alt="Rave Cyberpunk wings" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-3.webp" alt="Pixie Elf wings" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-4.webp" alt="Neon Butterfly wings" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-5.webp" alt="Demon Edgy wings" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-6.webp" alt="Green Leaf wings" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-7.webp" alt="Two color wheels: wing color and glow color" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-8.webp" alt="Motion modes: rest, flutter, fly and glide" width="720" height="900" loading="lazy"></a>
+          <a href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener"><img src="img/wings-9.webp" alt="Touch the wings and they sparkle back" width="720" height="900" loading="lazy"></a>
+        </div>
+        <div class="newrow">
+          <a class="btn" href="https://jinxxy.com/YGMackillaVR/YGSparkleWingsBundle" target="_blank" rel="noopener">Get YG Sparkle Wings: $20</a>
+          <small>5 music-reactive wing sets &middot; PC + Quest &middot; VRCFury drag and drop</small>
+        </div>
       </div>
     </section>
 
