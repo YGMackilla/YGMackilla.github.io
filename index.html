@@ -59,6 +59,9 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg
 .scroller { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; -webkit-overflow-scrolling: touch; }
 .scroller a { flex: 0 0 min(62%, 220px); scroll-snap-align: start; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
 .scroller img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.scroller a.reel { position: relative; flex: 0 0 min(43.6%, 155px); aspect-ratio: 9 / 16; background: #1a0d33; }
+.scroller a.reel video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.reel-tag { position: absolute; left: 8px; bottom: 8px; font: 700 .7rem var(--display); padding: 4px 8px; border-radius: 999px; background: rgba(7,16,26,.72); color: #fff; }
 .newname { margin: 0 0 12px; font: 700 1.1rem/1.25 var(--display); letter-spacing: -.01em; }
 .newblock + .newblock { margin-top: 36px; }
 .newrow { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-top: 14px; }
@@ -180,6 +183,7 @@ footer { text-align: center; color: var(--soft); font-size: .82rem; }
       <div class="newblock">
         <h3 class="newname">YG Strawberry Boba Launcher</h3>
         <div class="scroller" tabindex="0" aria-label="YG Strawberry Boba Launcher preview slides">
+          <a class="reel" href="media/boba-reel.mp4" target="_blank" rel="noopener" aria-label="Watch the Boba Launcher ad reel with sound"><video src="media/boba-reel-loop.mp4" poster="img/boba-reel-poster.webp" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video><span class="reel-tag">&#9654; watch with sound</span></a>
           <a href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener"><img src="img/boba-1.webp" alt="YG Strawberry Boba Launcher: a cute hand-held boba for VRChat avatars, $8" width="720" height="900"></a>
           <a href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener"><img src="img/boba-2.webp" alt="Shake it: the pearls slosh around inside the cup" width="720" height="900" loading="lazy"></a>
           <a href="https://jinxxy.com/YGMackillaVR" target="_blank" rel="noopener"><img src="img/boba-3.webp" alt="Three color wheels: drink, pearls and straw, with the launcher matching" width="720" height="900" loading="lazy"></a>
